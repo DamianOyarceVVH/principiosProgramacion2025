@@ -30,13 +30,20 @@ with open(ubicacion, 'w') as archivo_datos: # La "w" sobrescribe el contenido, l
 print("El mensaje fue impreso con éxito.")"""
 
 # V2 + creación de carpetas ----------------------------------------------------------------------------------------------
-ubicacion = "C:/Users/Estudiante4c2025/Documents/VS Code/principiosProgramacion2025/nuevoArchivo.txt"
-modo = input("¿Quieres sobrescribir el archivo (w) o agregar al archivo (a)? (w/a):\n")
+ubicacion = "C:/Users/Programacion4c2025/Documents/VS Code/principiosProgramacion2025/nuevoArchivo.txt"
+modo = input("¿Quieres sobrescribir el archivo (w) o agregar al archivo (a)? (w/a):\n").lower()
+
 while modo not in ['w', 'a']:
-    print("Opción no valida, debe pulsar 'w' o 'a'.")
-    modo = input("¿Quieres sobrescribir el archivo (w) o agregar al archivo (a)? (w/a):\n")
-    
-with open(ubicacion, 'w') as archivo_datos:
-    archivo_datos.write("Hola, estos son mis datos.\n")
-    archivo_datos.write("Otra línea de información\n")
-print("El mensaje fue impreso con éxito.")
+    print("Opción no válida, debe pulsar 'w' o 'a'.")
+    modo = input("¿Quieres sobrescribir el archivo (w) o agregar al archivo (a)? (w/a):\n").lower()
+
+if modo == 'w':
+    with open(ubicacion, 'w') as archivo_datos:
+        archivo_datos.write("Hola, estos son mis datos.\n")
+        archivo_datos.write("Otra línea de información\n")
+    print("El mensaje fue impreso con éxito (sobrescritura).")
+elif modo == 'a':
+    with open(ubicacion, 'a') as archivo_datos:
+        archivo_datos.write("Hola, estos son mis datos.\n")
+        archivo_datos.write("Otra línea de información\n")
+    print("El mensaje fue impreso con éxito (agregado).")
