@@ -1,2 +1,2 @@
-Hola, estos son mis datos almacenados.
+Hola, estos son mis datos.
 Otra línea de información

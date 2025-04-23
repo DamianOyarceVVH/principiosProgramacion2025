@@ -20,11 +20,23 @@ try:
 except PermissionError:
     print(f"No tiene permiso para crear carpetas en {ubicacion_carpeta}")
 except Exception as e:
-    print(f"Ocurrió un error: {e}")"""
+    print(f"Ocurrió un error: {e}")
 
 # V2 + archivos ----------------------------------------------------------------------------------------------------------
 ubicacion = "/Users/Estudiante4c2025/Documents/VS Code/principiosProgramacion2025/nuevoArchivo.txt"
-with open(ubicacion, 'w') as archivo_datos:
+with open(ubicacion, 'w') as archivo_datos: # La "w" sobrescribe el contenido, la "a" permite agregar texto sin necesidad de borrar lo anterior
     archivo_datos.write("Hola, estos son mis datos almacenados.\n")
     archivo_datos.write("Otra línea de información\n")
-# La "w" sobrescribe el contenido, la "a" permite agregar texto sin necesidad de borrar lo anterior
+print("El mensaje fue impreso con éxito.")"""
+
+# V2 + creación de carpetas ----------------------------------------------------------------------------------------------
+ubicacion = "C:/Users/Estudiante4c2025/Documents/VS Code/principiosProgramacion2025/nuevoArchivo.txt"
+modo = input("¿Quieres sobrescribir el archivo (w) o agregar al archivo (a)? (w/a):\n")
+while modo not in ['w', 'a']:
+    print("Opción no valida, debe pulsar 'w' o 'a'.")
+    modo = input("¿Quieres sobrescribir el archivo (w) o agregar al archivo (a)? (w/a):\n")
+    
+with open(ubicacion, 'w') as archivo_datos:
+    archivo_datos.write("Hola, estos son mis datos.\n")
+    archivo_datos.write("Otra línea de información\n")
+print("El mensaje fue impreso con éxito.")
