@@ -61,4 +61,18 @@ def mostrar(*args,**kwargs):
     print("Posicionales:", args)
     print("Nombrados:" ,kwargs)
 mostrar(1, 2, 3, nombre = "Yetzibel", edad = 18)
+
+print ("\n----------------------------------------------------------------------------------------------")
+print("Función: mostrar frutas y detalles")
+print ("----------------------------------------------------------------------------------------------\n")
+
+def mostrar_frutas(*frutas, **detalles):
+    print("=== Lista de frutas ===")
+    for fruta in frutas:
+        print(f"- {fruta}")
+        
+    print("\n === Detalles adicionales ===")
+    for clave, valor in detalles.items():
+        print(f"{clave}: {valor}")
     
+mostrar_frutas("Manzana", "Plátano", "Naranjo", Color = "Rojo", Cantidad = 3, Estacion = "Verano")
