@@ -1,4 +1,5 @@
-"""intentos = []
+# --------------------------------------------------------------------------------------------------------------------------------
+intentos = []
 numero = int(7)
 
 while True:
@@ -14,43 +15,30 @@ while True:
             break
     except ValueError:
         print("Lo que ingresó no es un número entero.")
-print(f'Intentos guardados:\n{intentos}')"""
+print(f'Intentos guardados:\n{intentos}')
 
-# Definición de los clubes con listas de tuplas (nombre, edad)
-club_literatura = [("Alice", 16), ("Bob", 17), ("Charlie", 16), ("Alice", 16)]
-club_ciencia = [("Bob", 17), ("David", 15), ("Eve", 16)]
-club_arte = [("Charlie", 16), ("Alice", 16), ("Frank", 18)]
-
-# ---
-
-## Procesamiento de los clubes
+# --------------------------------------------------------------------------------------------------------------------------------
+club_voley = [("Max", 17), ("Damián", 17), ("Maximiliano", 17), ("Matías", 17)]
+club_basquet = [("Max", 17), ("Vicente", 18), ("Maximiliano", 17)]
+club_futbol = [("Matías", 17), ("Max", 17), ("Santos", 17)]
 
 # Eliminar duplicados dentro de cada club y convertir a conjunto para facilitar comparaciones
 # Convertimos las tuplas (nombre, edad) a tuplas inmutables dentro del conjunto
-club_literatura_set = set(club_literatura)
-club_ciencia_set = set(club_ciencia)
-club_arte_set = set(club_arte)
+club_voley_set = set(club_voley)
+club_basquet_set = set(club_basquet)
+club_futbol_set = set(club_futbol)
 
-print("---")
 print("Miembros únicos por club:")
-print(f"Club de Literatura: {club_literatura_set}")
-print(f"Club de Ciencia: {club_ciencia_set}")
-print(f"Club de Arte: {club_arte_set}")
+print(f"Club de Voley: {club_voley_set}")
+print(f"Club de Básquet: {club_basquet_set}")
+print(f"Club de Fútbol: {club_futbol_set}")
 
-# ---
+todos_los_alumnos = club_voley_set.union(club_basquet_set).union(club_futbol_set)
 
-## Encontrar alumnos en más de un club
-
-# Unir todos los alumnos en un solo conjunto para encontrar duplicados
-todos_los_alumnos = club_literatura_set.union(club_ciencia_set).union(club_arte_set)
-
-# Conjunto para almacenar los alumnos que están en más de un club
 alumnos_en_multiples_clubes = set()
 
-# Lista de todos los clubes en formato conjunto
-todos_los_clubes_sets = [club_literatura_set, club_ciencia_set, club_arte_set]
+todos_los_clubes_sets = [club_voley_set, club_basquet_set, club_futbol_set]
 
-# Iterar sobre cada alumno y verificar en cuántos clubes está
 for alumno in todos_los_alumnos:
     contador_clubes = 0
     for club_set in todos_los_clubes_sets:
@@ -59,11 +47,9 @@ for alumno in todos_los_alumnos:
     if contador_clubes > 1:
         alumnos_en_multiples_clubes.add(alumno)
 
-print("---")
 print("Alumnos que están en más de un club:")
 if alumnos_en_multiples_clubes:
     for alumno in alumnos_en_multiples_clubes:
         print(f"- {alumno[0]} (Edad: {alumno[1]})")
 else:
     print("No hay alumnos que estén en más de un club.")
-print("---")
