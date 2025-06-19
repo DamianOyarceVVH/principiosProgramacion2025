@@ -1,78 +1,68 @@
-print("Funciones: args y kwargs")
+# Obj: Aplicar librería OS, funciones strip(), rstrip(), lstrip() , para eliminar caracteres específicos del principio y/o al final de una cadena.
 
+# Imprime una línea separadora
 print ("\n---------------------------------------------------------------------")
-print("Función: llevar cosas")
+# Imprime el título de la sección actual, indicando que se trata de la función strip con un cuento.
+print("Función strip: Cuento")
+# Imprime otra línea separadora
 print ("---------------------------------------------------------------------\n")
 
-def llevar(*cosas):
-    for cosa in cosas:
-        print(f"- Llevo {cosa}")
-llevar("Lapiz", "Borrador", "Cartulina", "Celular")
+# Importa el módulo 'os' que proporciona funciones para interactuar con el sistema operativo, como la creación de directorios
+import os
+# Define la ruta de la carpeta donde se creará el archivo del cuento
+ruta_carpeta = "C://clase"
+# Inicia un bloque try-except para manejar posibles errores durante la creación de la carpeta
+try:
+    # 'exist_ok=False' asegura que se lance un error si la carpeta ya existe, evitando sobrescribir o ignorar la existencia
+    os.makedirs(ruta_carpeta, exist_ok=False)
+    # Si la carpeta se crea con éxito, imprime un mensaje de confirmación
+    print(f"La carpeta fue creada con éxito en: {ruta_carpeta}")
+# Captura una excepción 'PermissionError' si el programa no tiene los permisos necesarios para crear la carpeta.
+except PermissionError:
+    # Imprime un mensaje indicando que no hay permisos
+    print(f"No tiene permiso para crear carpetas en {ruta_carpeta}")
+# Captura cualquier otra excepción que pueda ocurrir durante la creación de la carpeta
+except Exception as e:
+    # Imprime un mensaje de error genérico junto con la descripción del error
+    print(f"Ocurrió un error: {e}")
 
-print ("\n---------------------------------------------------------------------")
-print("Función: llevar cosas")
-print ("---------------------------------------------------------------------\n")
+# Define una cadena de texto multilinea que representa el cuento
+cuento = """AEn el futuro brillante vivía la familia Supersónico, con su perro Astro y el robot RobotinaU.
+ASúper Sónico volaba a su trabajo en un platillo, mientras Ultra Sónico hacía las compras con solo presionar un botónU.
+ALucero Sónico soñaba con ser cantante galáctica, y Cometín Sónico inventaba robots para no hacer la tarea.
+AUn día, Astro se perdió entre satélites y meteoritosJ.
+ATodos lo buscaron con su nave turbo y, al encontrarlo, hicieron una fiesta entre estrellasK.
+ADesde entonces, los Supersónicos valoraron más estar juntos que cualquier tecnología8."""
 
-def suma_total(*args):
-    return sum(args)
-print(">", suma_total(3, 5))
-print(">", suma_total(1, 2, 3, 4, 5))
+# Define la ruta completa del archivo donde se guardará el cuento
+archivo_cuento = "C://clase/cuento.txt"
 
-print ("\n---------------------------------------------------------------------")
-print("Función: llevar cosas")
-print ("---------------------------------------------------------------------\n")
-
-def sumar_todos(*numeros):
-    total = 0
-    for num in numeros:
-        total += num
-    return total
-print(">", sumar_todos(1, 2, 3))
-print(">", sumar_todos(10, 20, 30, 40))
-print(">", sumar_todos())
-
-print ("\n---------------------------------------------------------------------")
-print("Función: llevar cosas")
-print ("---------------------------------------------------------------------\n")
-
-def registrar(**datos):
-    for clave, valor in datos.items():
-        print(f"- {clave}: {valor}")
-registrar(Nombre = "Max", Edad = 17, Ciudad = "Santiago")
-
-print ("\n---------------------------------------------------------------------")
-print("Función: llevar cosas")
-print ("---------------------------------------------------------------------\n")
-
-def saludar(**kwargs):
-    if "nombre" in kwargs:
-        print(f"Hola, {kwargs['nombre']}!")
-    else: print("Hola, desconocido.")
-    if "edad" in kwargs:
-        print(f"Tienes {kwargs['edad']} años.")
-saludar(nombre = "Martín")
-saludar (nombre = "Alonso", edad = 17)
-
-print ("\n---------------------------------------------------------------------")
-print("Función: llevar cosas")
-print ("---------------------------------------------------------------------\n")
-
-def mostrar(*args,**kwargs):
-    print("Posicionales:", args)
-    print("Nombrados:" ,kwargs)
-mostrar(1, 2, 3, nombre = "Yetzibel", edad = 18)
-
-print ("\n---------------------------------------------------------------------")
-print("Función: llevar cosas")
-print ("---------------------------------------------------------------------\n")
-
-def mostrar_frutas(*frutas, **detalles):
-    print("=== Lista de frutas ===")
-    for fruta in frutas:
-        print(f"- {fruta}")
-        
-    print("\n === Detalles adicionales ===")
-    for clave, valor in detalles.items():
-        print(f"{clave}: {valor}")
+# Abre el archivo especificado en modo escritura ('w'). Si el archivo no existe, lo crea, y si existe, borra su contenido
+with open(archivo_cuento, 'w') as archivo:
+    # Escribe el contenido de la variable 'cuento' en el archivo
+    archivo.write(cuento)
     
-mostrar_frutas("Manzana", "Plátano", "Naranjo", Color = "Rojo", Cantidad = 3, Estacion = "Verano")
+# Abre el mismo archivo en modo lectura ('r')
+with open(archivo_cuento, 'r') as archivo:
+    # Lee todas las líneas del archivo y las almacena como una lista de cadenas en 'lineas'
+    # Cada elemento de la lista incluirá el carácter de nueva línea ('\n')
+    lineas = archivo.readlines()
+    
+# Crea una nueva lista 'lineas_sin_lstrip'
+# 'lstrip("A")' elimina todas 'A' del principio de cada cadena.
+lineas_lstrip = [linea.lstrip("A") for linea in lineas]
+
+# Crea una nueva lista 'nuevas_lineas' aplicando 'rstrip("UJK8.\n")' a cada línea de 'lineas_sin_lstrip'.
+# Se ha añadido el carácter '.' (punto) al conjunto de caracteres a eliminar,
+# lo que permite que 'rstrip' elimine los caracteres 'U', 'J', 'K', '8'
+# incluso si están seguidos de un punto antes del salto de línea.
+nuevas_lineas = [linea.rstrip("UJK8.\n") for linea in lineas_lstrip]
+
+# Abre el archivo nuevamente en modo escritura ('w') para sobrescribir su contenido
+with open(archivo_cuento, 'w') as archivo:
+    # Escribe todas las cadenas de la lista 'nuevas_lineas' en el archivo, añadiendo un salto de línea a cada una
+    for linea in nuevas_lineas:
+        archivo.write(linea + ".\n")
+    
+# Imprime la lista 'nuevas_lineas' en la consola
+print(nuevas_lineas)
