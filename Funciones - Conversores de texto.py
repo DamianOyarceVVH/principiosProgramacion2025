@@ -1,9 +1,3 @@
-"""
-Created on Thu Jul 17 08:31:14 2025
-
-@author: Programacion 4C 2025
-"""
-
 ejemplo = "Cuarto Medio de Programación"
 resultado = ejemplo.lower()
 print(resultado)
